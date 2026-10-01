@@ -1,0 +1,146 @@
+{
+  "type": "object",
+  "properties": {
+    "response": {
+      "type": "string",
+      "maxLength": 4000
+    },
+    "analysis": {
+      "type": "object",
+      "properties": {
+        "situation": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "thought": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "emotion": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "behavior": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "consequence": {
+          "type": "string",
+          "maxLength": 4000
+        }
+      },
+      "required": [
+        "situation",
+        "thought",
+        "emotion",
+        "behavior",
+        "consequence"
+      ],
+      "additionalProperties": false
+    },
+    "hypotheses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "maxLength": 4000
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "status": {
+            "type": "string",
+            "enum": ["hypothesis"]
+          }
+        },
+        "required": ["text", "confidence", "status"],
+        "additionalProperties": false
+      },
+      "maxItems": 3
+    },
+    "alternative_explanations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 4000
+      },
+      "maxItems": 5
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 4000
+      },
+      "maxItems": 5
+    },
+    "strategy": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 4000
+          },
+          "maxItems": 5
+        },
+        "duration_days": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 30
+        }
+      },
+      "required": ["title", "steps", "duration_days"],
+      "additionalProperties": false
+    },
+    "memory_candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "maxLength": 4000
+          },
+          "decision": {
+            "type": "string",
+            "enum": ["ASK_USER"]
+          }
+        },
+        "required": ["text", "decision"],
+        "additionalProperties": false
+      },
+      "maxItems": 3
+    },
+    "safety": {
+      "type": "object",
+      "properties": {
+        "active": {
+          "type": "boolean"
+        }
+      },
+      "required": ["active"],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "response",
+    "analysis",
+    "hypotheses",
+    "alternative_explanations",
+    "questions",
+    "strategy",
+    "memory_candidates",
+    "safety"
+  ],
+  "additionalProperties": false
+}
