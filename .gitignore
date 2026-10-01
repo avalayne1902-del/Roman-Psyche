@@ -32,3 +32,14 @@ google-services.json
 
 # Android Profiling
 *.hprof
+
+# Web app runtime and local secrets
+node_modules/
+.env
+.env.*
+!.env.example
+data/
+*.sqlite*
+coverage/
+playwright-report/
+test-results/
